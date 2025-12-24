@@ -26,10 +26,8 @@ jobs:
         run: |
           if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
             echo "tags=${{ secrets.GITLAB_IMAGE }}:dev,${{ secrets.GITLAB_IMAGE }}:${{ github.sha }}" >> $GITHUB_OUTPUT
-            echo "target=builder" >> $GITHUB_OUTPUT
           elif [[ "${{ github.ref }}" == refs/tags/v* ]]; then
             echo "tags=${{ secrets.GITLAB_IMAGE }}:${{ github.ref_name }},${{ secrets.GITLAB_IMAGE }}:latest" >> $GITHUB_OUTPUT
-            echo "target=production" >> $GITHUB_OUTPUT
           fi
 
       - name: Build & Push image
